@@ -1,1 +1,36 @@
+/* profile.css */
+
+/* Main container styles */
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f8f9fa; /* Light gray background */
+}
+
+/* Heading styles */
+h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333; /* Dark gray text color */
+}
+
+/* Profile details styles */
+.profile-details {
+    margin-bottom: 20px;
+}
+
+/* Button styles */
+button {
+    padding: 10px 20px;
+    background-color: #007bff; /* Blue button background */
+    color: #fff; /* White text color */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
 
