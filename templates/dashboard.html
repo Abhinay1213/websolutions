@@ -1,1 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    
+</head>
+<body>{% block content %}
+    {% block css %}<link rel="stylesheet" href="{% static 'css/dashboard.css' %}">{% endblock %}
+    <h1>Welcome to the Dashboard</h1>
+
+    <!-- Button to View Wishlist -->
+    <form action="{% url 'wishlist' %}" method="post">
+        {% csrf_token %}
+        <button type="submit">View Wishlist</button>
+    </form>
+
+    <!-- Button to View User Profile -->
+    <form action="{% url 'profile' %}" method="post">
+        {% csrf_token %}
+        <button type="submit">View Profile</button>
+    </form>
+    {% endblock %}
+</body>
+</html>
 
