@@ -1,0 +1,42 @@
+<!-- base.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Vendor Application Inventory{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <!-- Add other CSS files and meta tags -->
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{% url 'index' %}">Home</a></li>
+                <li><a href="{% url 'vendor_products' %}">All Products</a></li>
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'wishlist' %}">Wishlist</a></li>
+                    <li><form action="{% url 'logout' %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit">Logout</button>
+                    </form></li>
+                {% else %}
+                    <li><a href="{% url 'login' %}">Login</a></li>
+                    <li><a href="{% url 'signup' %}">Sign Up</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}
+        <!-- This block will be overridden in child templates -->
+        {% endblock %}
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Vendor Application Inventory</p>
+    </footer>
+</body>
+</html>

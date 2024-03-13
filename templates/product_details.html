@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ product.name }}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <header>
+        <h1> {{ product.name }} Details</h1>
+    </header>
+    <div id="product-details-container">
+        <h1>{{ product.name }} Details</h1>
+    <p><strong>Price:</strong> ${{ product.price }}</p>
+    <p><strong>Description:</strong> {{ product.description }}</p>
+    <p><strong>Company Established:</strong> {{ product.company_established }}</p>
+    <p><strong>Software Name:</strong> {{ product.software_name }}</p>
+
+        <!-- more product details here -->
+
+        <!--button to add product to wishlist -->
+        <form action="{% url 'add_to_wishlist' product.id %}" method="post">
+            {% csrf_token %}
+            <button type="submit">Add to Wishlist</button>
+        </form>
+    </div>
+</body>
+</html>
