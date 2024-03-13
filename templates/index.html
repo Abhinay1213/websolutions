@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vendor Application Inventory Platform</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Vendor Application Inventory Platform</h1>
+    </header>
+    <div id="vendor-form-container">
+        <h2>Vendor Application Form</h2>
+        <form id="vendor-form">
+            {% csrf_token %}
+            <input type="text" id="vendor-name" name="vendor_name" placeholder="Vendor Name">
+<input type="email" id="vendor-email" name="vendor_email" placeholder="Email">
+<input type="text" id="vendor-product" name="vendor_product" placeholder="Product">
+
+            <button type="submit">Submit</button>
+        </form>
+        
+    </div>
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>
