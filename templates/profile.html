@@ -1,1 +1,31 @@
+<!-- profile.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+    <title>User Profile</title>
+</head>
+<body>
+    <div class="container">
+    <h1>User Profile</h1>
+    <div class="profile-details">
+    <p>First Name: {{ user.first_name }}</p>
+    <p>Last Name: {{ user.last_name }}</p>
+    <p>Email: {{ user.email }}</p>
+    <p>Phone Number: {{ user.phone_number }}</p>
+    <p>Business Name: {{ user.business_name }}</p>
+    <p>Business Type: {{ user.business_type }}</p>
+    <p>Business Address: {{ user.business_address }}</p>
+    </div>
+    <form action="{% url 'logout' %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Logout</button>
+    </form>
+</div>
+
+</body>
+</html>
 
