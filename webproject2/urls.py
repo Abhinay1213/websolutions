@@ -19,5 +19,8 @@ urlpatterns = [
     path('logout-success/', views.logout_success, name='logout_success'),
     
     #path('logout/', views.logout_view, name='logout'),
+    path('dashboard/', views.dashboard, name='dashboard'),
+    path('profile/', views.profile, name='profile'),
+    path('wishlist/', views.wishlist, name='wishlist'),
 
 ]
