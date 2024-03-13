@@ -4,6 +4,7 @@ from django.http import JsonResponse
 from .models import Product
 from django.contrib.auth.decorators import login_required
 from .forms import CustomUserCreationForm
+from .models import Product, Wishlist
 #from django.contrib.auth.views import LogoutView
 
 def index(request):
@@ -64,8 +65,6 @@ def submit_form(request):
         return JsonResponse({'error': 'Invalid request method'}, status=400)
     
 
-    
-
 def logout_success(request):
     return render(request, 'logout_success.html')
 
@@ -79,3 +78,29 @@ def signup(request):
     else:
         form = CustomUserCreationForm()
     return render(request, 'signup.html', {'form': form})
+
+def add_to_wishlist(request, product_id):
+    if request.method == 'POST':
+        product = get_object_or_404(Product, pk=product_id)
+        # Add the product to the wishlist
+        Wishlist.objects.create(product=product, user=request.user)
+        return redirect('wishlist')  # Redirect to the wishlist page
+
+
+from django.contrib.auth.decorators import login_required
+
+@login_required
+def dashboard(request):
+    return render(request, 'dashboard.html')
+
+@login_required
+def wishlist(request):
+    wishlist_items = Wishlist.objects.filter(user=request.user)
+    return render(request, 'wishlist.html', {'wishlist_items': wishlist_items})
+@login_required
+def dashboard(request):
+    return render(request, 'dashboard.html')
+@login_required
+def profile(request):
+    user = request.user
+    return render(request, 'profile.html', {'user': user})
