@@ -52,3 +52,10 @@ class CustomUser(AbstractUser):
     class Meta:
         permissions = [('can_change_status', 'Can change status')]
         verbose_name_plural = "Custom Users"
+
+class Wishlist(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.user.username}'s Wishlist"
