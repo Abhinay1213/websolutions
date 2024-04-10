@@ -23,4 +23,10 @@ urlpatterns = [
     path('profile/', views.profile, name='profile'),
     path('wishlist/', views.wishlist, name='wishlist'),
 
+    path('add-interest/<int:product_id>/', views.add_interest, name='add_interest'),
+    path('remove-interest/<int:product_id>/', views.remove_interest, name='remove_interest'),
+    path('login-notification/', views.login_notification, name='login_notification'),
+    
+    path('add-product/', views.add_product, name='add_product'),
+
 ]
