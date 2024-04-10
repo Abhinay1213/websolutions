@@ -21,6 +21,8 @@ urlpatterns = [
     #path('logout/', views.logout_view, name='logout'),
     path('dashboard/', views.dashboard, name='dashboard'),
     path('profile/', views.profile, name='profile'),
+    path('profile/update/', views.update_profile, name='update_profile'),
+    path('', views.customer_home, name='customer_home'),
     path('wishlist/', views.wishlist, name='wishlist'),
 
     path('add-interest/<int:product_id>/', views.add_interest, name='add_interest'),
