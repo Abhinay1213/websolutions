@@ -18,9 +18,27 @@ class Product(models.Model):
     company_established = models.DateField(null=True)
     software_name = models.CharField(max_length=100, null=True)
 
+    company_website = models.URLField(blank=True, null=True)
+    software_type = models.CharField(max_length=100, blank=True, null=True)
+    location_countries = models.CharField(max_length=255, blank=True, null=True)
+    location_cities = models.CharField(max_length=255, blank=True, null=True)
+    contact_telephone = models.CharField(max_length=20, blank=True, null=True)
+    address = models.CharField(max_length=255, blank=True, null=True)
+    num_employees = models.PositiveIntegerField(blank=True, null=True)
+    internal_services = models.BooleanField(default=False)
+    last_demo_date = models.DateField(blank=True, null=True)
+    last_review_date = models.DateField(blank=True, null=True)
+    business_areas = models.CharField(max_length=255, blank=True, null=True)
+    modules = models.CharField(max_length=255, blank=True, null=True)
+    client_types = models.CharField(max_length=255, blank=True, null=True)
+    cloud_type = models.CharField(max_length=100, blank=True, null=True)
+    additional_information = models.TextField(blank=True, null=True)
+    has_document = models.BooleanField(default=False, verbose_name="Document")
+    document_file = models.FileField(upload_to='documents/', blank=True, null=True)
+    approved = models.BooleanField(default=False)
+
     def __str__(self):
         return self.name
-    
 
 
 
