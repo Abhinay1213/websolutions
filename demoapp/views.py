@@ -104,3 +104,58 @@ def dashboard(request):
 def profile(request):
     user = request.user
     return render(request, 'profile.html', {'user': user})
+
+
+
+def signup(request):
+    if request.method == 'POST':
+        form = CustomUserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('login')
+    else:
+        form = CustomUserCreationForm()
+    return render(request, 'signup.html', {'form': form})
+
+@login_required
+def add_interest(request, product_id):
+    product = get_object_or_404(Product, pk=product_id)
+    
+    # Check if the user has already marked interest for this product
+    existing_interest = Interest.objects.filter(user=request.user, product=product).exists()
+    if existing_interest:
+        # Redirect with a message indicating that the user has already marked interest
+        return redirect('product_details', product_id=product_id)
+
+    # Create a new interest instance
+    interest = Interest.objects.create(user=request.user, product=product)
+    
+    # Mark the interest as "interested" for the user
+    interest.interested_users.add(request.user)
+    
+    # Redirect to the product details page
+    return redirect('product_details', product_id=product_id)
+    
+@login_required
+def remove_interest(request, product_id):
+    product = get_object_or_404(Product, pk=product_id)
+    if request.method == 'POST':
+        # Check if the user has expressed interest
+        existing_interest = Interest.objects.filter(user=request.user, product=product).first()
+        if existing_interest:
+            # Remove the interest
+            existing_interest.delete()
+        return redirect('product_details', product_id=product_id)
+    return redirect('product_details', product_id=product_id)
+def add_product(request):
+    if request.method == 'POST':
+        form = ProductForm(request.POST, request.FILES)
+        if form.is_valid():
+            product = form.save
+            if product.has_document and 'document_file' in request.FILES:
+                product.document_file = request.FILES['document_file']
+            product.save()
+            return redirect('customer_products')
+    else:
+        form = ProductForm()
+    return render(request, 'add_product.html', {'form': form})
