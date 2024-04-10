@@ -104,6 +104,20 @@ def dashboard(request):
 def profile(request):
     user = request.user
     return render(request, 'profile.html', {'user': user})
+@login_required
+def update_profile(request):
+    if request.method == 'POST':
+        form = CustomUserUpdateForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect('profile')
+    else:
+        form = CustomUserUpdateForm(instance=request.user)
+    return render(request, 'update_profile.html', {'form': form})
+
+def customer_home(request):
+    return render(request, 'customer_home.html')
+
 
 
 
