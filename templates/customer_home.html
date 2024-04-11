@@ -1,0 +1,59 @@
+<!-- customer_home.html -->
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Home</title>
+    <link rel="stylesheet" href="{% static 'css/customer_home.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Welcome to Team-9 Solutions</h1>
+        <p>Discover the best products here!</p>
+    </header>
+
+    <div class="content">
+        <section class="about-us">
+            <p>Welcome to Team-9 Solutions!</p>
+            <p>At Team-9 Solutions, we are dedicated to providing you with a seamless and enjoyable shopping experience. Our mission is to connect customers with the best products and services, all in one convenient location.</p>
+            <p>With a focus on quality, convenience, and customer satisfaction, we aim to make your shopping experience effortless and enjoyable. Whether you're looking for the latest trends, essential everyday items, or unique gifts, we've got you covered.</p>
+            <p>Our team works tirelessly to ensure that our platform is user-friendly, reliable, and constantly evolving to meet your needs. We value your feedback and are committed to continuously improving our platform to better serve you.</p>
+            <p>Thank you for choosing Welcome to Team-9 Solutions!. We look forward to being your trusted destination for all your shopping needs!</p>
+            <div class="buttons">
+                {% if not user.is_authenticated %}
+                    <a href="{% url 'login' %}" class="btn">Login</a>
+                    <a href="{% url 'signup' %}" class="btn">Sign Up</a>
+                {% endif %}
+                
+                <a href="{% url 'customer_products' %}" class="btn">Our products</a>
+                {% if user.is_authenticated %}
+                <a href="{% url 'dashboard' %}" class="btn">Dashboard</a>
+                <a href="{% url 'profile' %}" class="btn">Profile</a>
+                    <form action="{% url 'logout' %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="btn logout-btn">Logout</button>
+                    </form>
+                    {% endif %}
+            </div>
+        </section>
+
+        <section class="featured-products">
+            <h2> </h2>
+            <div class="product">
+                <!-- Add product images and details here -->
+            </div>
+            <div class="product">
+                <!-- Add product images and details here -->
+            </div>
+            <!-- Add more product sections as needed -->
+        </section>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2024 Your Store. All rights reserved.</p>
+    </footer>
+</body>
+</html>
