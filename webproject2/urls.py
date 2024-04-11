@@ -7,7 +7,7 @@ from django.contrib.auth import views as auth_views  # Import LoginView from aut
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.index, name='index'),
+    #path('', views.index, name='index'),
     path('submit/', views.submit_vendor, name='submit_vendor'),
     path('vendor-products/', views.vendor_products, name='vendor_products'),
     path('product-details/<int:product_id>/', views.product_details, name='product_details'),
