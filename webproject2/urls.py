@@ -14,7 +14,7 @@ urlpatterns = [
     path('add-to-wishlist/<int:product_id>/', views.add_to_wishlist, name='add_to_wishlist'),
     
     path('signup/', views.signup, name='signup'),
-    path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
+    path('accounts/login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(next_page='/logout-success/'), name='logout'),
     path('logout-success/', views.logout_success, name='logout_success'),
     
