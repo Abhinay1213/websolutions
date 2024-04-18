@@ -110,10 +110,14 @@ def update_profile(request):
         form = CustomUserUpdateForm(request.POST, instance=request.user)
         if form.is_valid():
             form.save()
-            return redirect('profile')
+            return redirect('update_success')
     else:
         form = CustomUserUpdateForm(instance=request.user)
     return render(request, 'update_profile.html', {'form': form})
+
+def update_success(request):
+    return render(request, 'update_success.html')
+
 
 def customer_home(request):
     return render(request, 'customer_home.html')
